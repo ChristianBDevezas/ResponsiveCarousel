@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section.slider {
+    width: 80%;
+    height: calc((50vh + 20vw));
+    margin: calc(4.8px + 1vw) auto 0 auto;
+    border: 2px solid black;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider::before, .slider::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 0%;
+    height: 100%;    
+    background-color: black;
+    z-index: 1;    
+}
+
+.slider::before {
+    left: 50%;    
+}
+
+.slider::after { 
+    right: 50%;
+}
+
+.show-effect.slider::before, .show-effect.slider::after {
+    animation: move-overlay .7s;
+}
+@keyframes move-overlay {
+    0% {
+        width: 0%;
+        opacity: .5;
+    }
+    100% {
+        width: 50%;        
+        opacity: 0;
+    }
+}
+
+.slider__item {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.show-item.slider__item {
+    animation: show-img .7s forwards;
+}
+@keyframes show-img {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.slider__number {
+    position: absolute;
+    top: 5px;
+    right: 7px;    
+}
+
+.slider__description {
+    position: absolute;
+    bottom: 7px;
+    transform: translateX(3.5%);
+}
+
+.moving-text.slider__description {
+    animation: move-text 1s; 
+}
+@keyframes move-text {
+    0% {transform: translateX(-40%);}
+    100% {transform: translateX(3.5%);}
+}
+
+.styling {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: calc(10px + 1vw);
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 5px;
+}
+
+.slider img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider__controls {
+    position: absolute;
+    top: 48.5%;
+    transform: translateY(-50%);
+    width: 100%;
+}
+
+.slider__controls button {
+    border: none;
+}
+
+.slider__controls i {
+    position: absolute;
+    z-index: 2;
+    font-size: calc(18px + 2vw);
+    cursor: pointer;
+    background: white;
+    opacity: .6;
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: all .5s;
+}
+.slider__controls i:hover {
+    opacity: 1;
+}
+
+.slider__controls .left-control i {
+    left: calc(8px);    
+}
+
+.slider__controls .right-control i {
+    right: calc(8px);
+}
